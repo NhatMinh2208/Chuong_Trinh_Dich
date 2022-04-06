@@ -9,7 +9,8 @@ using namespace std;
 bool sign = false;
 bool isCharacter(char c){
     if(c == '.') sign = true;
-    if(c == ' ' || c == ',' || c == '.' || c == '(' || c == ')' ) return 0;
+    if(!(c <= 'z' && c >= 'a') || (c <= 'Z' && c >= 'A')) return 0;
+    //if(c == ' ' || c == ',' || c == '.' || c == '(' || c == ')' || c == '!' || c == ';' || c == '?' || c == '-') return 0;
     return 1;
 }
 
@@ -44,6 +45,7 @@ bool isBelongTo(string word, std::vector<string> list){
 std::vector<string> split(string text){
     std::vector<string> arr;
     string temp;
+
     for(auto it = text.begin(); it != text.end(); it++){
         if(isCharacter(*it)){
             if(sign == true){
@@ -99,7 +101,7 @@ int main(int argc, char *argv[]){
     
 
     string myText;
-    ifstream myfile("vanban.txt");
+    ifstream myfile("alice30.txt");
     std::vector<info> arr;
     int line_index = 0;
     while(getline(myfile, myText)){
